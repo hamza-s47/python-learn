@@ -27,3 +27,8 @@ non_greedy_regex = re.compile(r'(Ha){3,5}?')
 gr_search = non_greedy_regex.search('HaHaHaHaHaHa')
 # print(gr_search.group())
 
+# CHARACTER CLASSES
+c_regex = re.compile(r'[AEIOU]', re.I) # Case insensitive
+t_regex = re.compile(r'\W')
+x = t_regex.findall('text')
+print(x)
