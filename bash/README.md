@@ -1,4 +1,4 @@
-# BASH
+#!/bin/bash
 
 # ONE
 chmod +x (Executable permission)
@@ -43,3 +43,51 @@ if (( "$_money" < 4000 ))
 Operators:
 -gt, -ge, -lt, -le, -eq, -ne with []
 >, >=, <, <=, = or ==, != with ()
+
+# SIX (LOOP)
+my_arr=(Apple Banana Peach)
+
+for idx in ${!my_arr[@]};
+do
+    echo $idx and ${my_arr[idx]};
+done
+
+# SEVEN (FUNCTION)
+sum_num(){
+    local num1=$1
+    local num2=$2
+    local sum=$((num1 + num2))
+    echo $sum
+}
+
+result=$(sum_num 1 2)
+echo $result
+
+# EIGHT (SORT)
+my_arr=(Peach Apple Banana)
+result_arr=($(printf "%s\n" "${my_arr[@]}" | sort))  (Sorting Arrays)
+echo ${result_arr[@]}
+
+echo -e "Banana\nApple\nPeach\nGrape" > fruit.txt
+sort fruit.txt -o fruit2.txt (Sorting files)
+head fruit2.txt
+
+# FILTER
+countries=()
+while IFS= read -r val; do
+    [[ -z $val ]] && break
+    countries+=($val)
+done
+
+my_arr=()
+
+for c in ${countries[@]}; do
+    if [[ "${c:0:1}" =~ [A-Z] ]]; then
+        abc=".${c:1}"
+        my_arr+=("$abc")
+    else
+        my_arr+=($c)
+    fi
+done
+
+echo ${my_arr[@]}
